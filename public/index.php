@@ -5,15 +5,14 @@ require_once '../inc/db.php';
 if (!isset($_SESSION['username'])) {
     $_SESSION['msg'] = "You must log in first";
     header('location: login.php');
-    $username1=$_SESSION['username'];
 }
 if (isset($_GET['logout'])) {
     session_destroy();
     unset($_SESSION['username']);
     header("location: login.php");
 }
-$query = mysqli_query($conn, "SELECT email from users where username=$username");
-echo $query;
+
+echo $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,11 +50,7 @@ echo $query;
 
 <?php
 $user=$_SESSION['username'];
-$query1='select email from users where username=$user ';
-$ans=$conn->query($query1);
-$ans1=$ans->fetch_assoc();
-print_r($ans1);
-echo $ans1;
+echo $user;
 ?>
 </body>
 </html>
