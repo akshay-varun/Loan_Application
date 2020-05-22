@@ -48,9 +48,5 @@ echo $_SESSION['username'];
 
 <a href="fill-form.php">Fill the form</a>
 
-<?php
-$user=$_SESSION['username'];
-echo $user;
-?>
 </body>
 </html>
