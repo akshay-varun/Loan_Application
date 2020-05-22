@@ -6,27 +6,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <form class="fill" method="post" action="process_form.php">
             <label for="first">First name</label>
-            <input type="text" class="form-control" id="first" placeholder="First name" required>
+    <input type="text" class="form-control" name="first" placeholder="First name" required>
         <br>
             <label for="second">Last name</label>
-            <input type="text" class="form-control" id="last" placeholder="Last name"  required>
+    <input type="text" class="form-control" name="last" placeholder="Second name" required>
         <br>
 
-            <label for="mail">Mail</label>
-            <input type="email" class="form-control" id="mail" value="
-            <?php
-            session_start();
-            require_once '../inc/db.php';
-            if (!isset($_SESSION['username'])) {
-                $_SESSION['msg'] = "You must log in first";
 
-             }
-         $user=$_SESSION['username'];
-            $sql = "SELECT email FROM users where username='$user' ";
-            $result=$conn->query(sql);
-        if ($result->num_rows > 0) {
+
+    <label for="mail">Mail</label>
+    <input type="email" class="form-control"name="mail" value="
+    <?php
+    session_start();
+    $conn = mysqli_connect('localhost', 'dbms', 'hdjdh83748jfjf#@A', 'tutorial');
+
+    if (!isset($_SESSION['username'])) {
+        $_SESSION['msg'] = "You must log in first";
+
+    }
+    $user=$_SESSION['username'];
+    $sql = "SELECT email FROM users where username='$user' ";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
             echo   $row["email"]. "";
@@ -38,53 +42,53 @@
     <br>
 
             <label for="age">Age</label>
-            <input type="number" class="form-control" id="age" placeholder="Age" required>
+            <input type="number" class="form-control" name="age" placeholder="Age" required>
     <br>
             <label for="dob">Date of Birth</label>
-            <input type="text" class="form-control" id="dob" placeholder="01/05/2000" required>
+            <input type="text" class="form-control" name="dob" placeholder="01/05/2000" required>
     <br>
             <label for="income">Monthly Income</label>
-            <input type="number" class="form-control" id="income" placeholder="" required>
+            <input type="number" class="form-control"name="income" placeholder="" required>
     <br>
             <label for="amount">Loan Amount Needed</label>
-            <input type="number" class="form-control" id="amount" placeholder="" required>
+            <input type="number" class="form-control" name="amount" placeholder="" required>
     <br>
 
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref" >Purpose</label>
             <select class="custom-select my-1 mr-sm-2" >
-                <option selected>Choose...</option>
+                <option selected >Choose...</option >
 
-                <option value="Home Loan" id="purpose">Home Loan</option>
-                <option value="Car Loan" id="purpose">Car Loan</option>
-                <option value="Industrial Loan" id="purpose">Industrial Loan</option>
+                <option value="Home Loan"name="purpose" id="purpose1">Home Loan</option >
+                <option value="Car Loan" name="purpose" id="purpose2">Car Loan</option>
+                <option value="Industrial Loan" name="purpose" id="purpose3">Industrial Loan</option>
             </select>
     <br>
     <br>
 
     <fieldset class="form-group">
         <div class="row" >
-            <legend class="col-form-label col-sm-2 pt-0">Tenure</legend>
+            <label >Tenure</label>
             <div class="col-sm-10">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" id="tenure" value="6" checked>
+                    <input class="form-check-input" type="radio" name="tenure" id="tenure6" value="6" checked>
                     <label class="form-check-label" for="tenure">
                         6 Months
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio"  id="tenure" value="12">
+                    <input class="form-check-input" type="radio"  name="tenure" id="tenure12" value="12">
                     <label class="form-check-label" for="tenure">
                         12 Months
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio"  id="tenure" value="24">
+                    <input class="form-check-input" type="radio" name="tenure" id="tenure24" value="24">
                     <label class="form-check-label" for="tenure">
                         24 Months
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio"  id="tenure" value="32">
+                    <input class="form-check-input" type="radio"  name="tenure" id="tenure32" value="32">
                     <label class="form-check-label" for="tenure">
                         32 Months
                     </label>
@@ -95,7 +99,7 @@
         <br>
         <br>
 
-    <button class="btn btn-primary" type="submit" id="save">Submit Form</button>
+    <button class="btn btn-primary" type="submit" name="save">Submit Form</button>
 </form>
 
 </body>
