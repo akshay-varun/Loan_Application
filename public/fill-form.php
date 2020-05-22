@@ -55,12 +55,12 @@
     <br>
 
             <label class="my-1 mr-2" for="inlineFormCustomSelectPref" >Purpose</label>
-            <select class="custom-select my-1 mr-sm-2" >
+            <select class="custom-select my-1 mr-sm-2" name="purpose">
                 <option selected >Choose...</option >
 
-                <option value="Home Loan"name="purpose" id="purpose1">Home Loan</option >
-                <option value="Car Loan" name="purpose" id="purpose2">Car Loan</option>
-                <option value="Industrial Loan" name="purpose" id="purpose3">Industrial Loan</option>
+                <option value="Home Loan" id="purpose1">Home Loan</option >
+                <option value="Car Loan" id="purpose2">Car Loan</option>
+                <option value="Industrial Loan" id="purpose3">Industrial Loan</option>
             </select>
     <br>
     <br>
