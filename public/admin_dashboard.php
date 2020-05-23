@@ -5,7 +5,7 @@
     <style>
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 90%;
             color: #588c7e;
             font-family: monospace;
             font-size: 25px;
@@ -42,11 +42,15 @@
     if ($result->num_rows > 0) {
 // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<td>" . $row["first_name"]. "</td><td>" . $row["last_name"] . "</td><td>" . $row["email"]. "</td><td>" . $row["age"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["income"] . "</td><td>" . $row["amount"] . "</td><td>" . $row["purpose"] . "</td><td>" . $row["tenure"] . "</td><td>";
+            echo "<td>" . $row["first_name"]. "</td><td>" . $row["last_name"] . "</td><td>" . $row["email"]. "</td><td>" . $row["age"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["income"] . "</td><td>" . $row["amount"] . "</td><td>" . $row["purpose"] . "</td><td>" . $row["tenure"] . "</td><tr>";
         }
+
         echo "</table>";
     } else { echo "0 results"; }
     $conn->close();
+    echo "
+    
+   "
     ?>
 </table>
 </body>
