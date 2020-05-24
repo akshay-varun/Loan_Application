@@ -5,7 +5,7 @@
     <style>
         table {
             border-collapse: collapse;
-            width: 90%;
+            width: 100%;
             color: #588c7e;
             font-family: monospace;
             font-size: 25px;
@@ -30,6 +30,8 @@
         <th>Loan Amount</th>
         <th>Purpose</th>
         <th>Tenure</th>
+        <th>Approve</th>
+        <th>Reject</th>
     </tr>
     <?php
     $conn = mysqli_connect('localhost', 'dbms', 'hdjdh83748jfjf#@A', 'tutorial');
@@ -37,20 +39,30 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT first_name,last_name,email,age,dob,income,amount,purpose,tenure from form";
+    $sql = "SELECT first_name,last_name,email,age,dob,income,amount,purpose,tenure from form ";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<td>" . $row["first_name"]. "</td><td>" . $row["last_name"] . "</td><td>" . $row["email"]. "</td><td>" . $row["age"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["income"] . "</td><td>" . $row["amount"] . "</td><td>" . $row["purpose"] . "</td><td>" . $row["tenure"] . "</td><tr>";
+            $mail=$row["email"];
+            echo "<td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["email"] . "</td><td>" . $row["age"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["income"] . "</td><td>" . $row["amount"] . "</td><td>" . $row["purpose"] .
+                "</td><td>" . $row["tenure"] . "</td><td>" .
+
+                "<form action=\"accept.php\" method='post'>
+                 <input type='hidden' name='mail' value=$row[email]>
+                
+                 <input type=\"submit\" name='update' value=\"Accept\" />
+            </form>" . "<td>" .
+             "<form action=\"reject.php\">
+                 <input type=\"submit\" value=\"Reject \" />
+            </form>" ."<tr>";
         }
 
         echo "</table>";
     } else { echo "0 results"; }
     $conn->close();
-    echo "
-    
-   "
+
+
     ?>
 </table>
 </body>
