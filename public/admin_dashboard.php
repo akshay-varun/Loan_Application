@@ -19,6 +19,7 @@
     </style>
 </head>
 <body>
+<p> <a href="admin_login.php?logout='1'" style="color: red;" class="logout">LOGOUT</a> </p>
 <table>
     <tr>
         <th>First Name</th>
@@ -34,6 +35,11 @@
         <th>Reject</th>
     </tr>
     <?php
+    if (isset($_GET['logout'])) {
+        session_destroy();
+        unset($_SESSION['username']);
+        header("location: admin_login.php");
+    }
     $conn = mysqli_connect('localhost', 'dbms', 'hdjdh83748jfjf#@A', 'tutorial');
     // Check connection
     if ($conn->connect_error) {
@@ -53,9 +59,11 @@
                 
                  <input type=\"submit\" name='update' value=\"Accept\" />
             </form>" . "<td>" .
-             "<form action=\"reject.php\">
-                 <input type=\"submit\" value=\"Reject \" />
-            </form>" ."<tr>";
+           "<form  action='reject.php' method='post'>
+                
+                <input type='hidden' name='mail' value=$row[email]>
+               <input type='submit' name='update' value='Reject'>
+        </form>" ."<tr>";
         }
 
         echo "</table>";
