@@ -14,7 +14,7 @@
     top:100px;
     left: 35%;
 font-family: 'Inconsolata', monospace;
-font-size: 60px">LOAN APPLICATION SYTEM</h1>
+font-size: 60px">LOAN APPLICATION SYSTEM</h1>
 </div>
 <br>
 <br>
