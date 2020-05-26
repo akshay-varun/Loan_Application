@@ -138,3 +138,14 @@ form, .content {
     display: table;
     clear: both;
 }
+.accept{
+    color: darkgreen;
+    background: darkgreen;
+    font-weight: bold;
+
+}
+.reject{
+    color: red;
+    background: red;
+    font-weight: bold;
+}

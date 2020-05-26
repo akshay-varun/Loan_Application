@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Table with database</title>
+    <title>Admin Dashboard</title>
     <style>
         table {
             border-collapse: collapse;
@@ -17,9 +17,12 @@
         }
         tr:nth-child(even) {background-color: #f2f2f2}
     </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<p> <a href="index.php?logout='1'" style="color: red;" class="logout">LOGOUT</a> </p>
+<p> <a href="index.php?logout='1'" style="color: red;" class="">LOGOUT</a> </p>
+<br>
+<br>
 <table>
     <tr>
         <th>First Name</th>
@@ -54,12 +57,12 @@
             echo "<td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["email"] . "</td><td>" . $row["age"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["income"] . "</td><td>" . $row["amount"] . "</td><td>" . $row["purpose"] .
                 "</td><td>" . $row["tenure"] . "</td><td>" .
 
-                "<form action=\"accept.php\" method='post'>
+                "<form action=\"accept.php\" method='post' class='accept'>
                  <input type='hidden' name='mail' value=$row[email]>
                 
-                 <input type=\"submit\" name='update' value=\"Accept\" />
+                 <input type=\"submit\" name='update' value=\"Accept\" style='color: darkslategray;' />
             </form>" . "<td>" .
-           "<form  action='reject.php' method='post'>
+           "<form  action='reject.php' method='post' class='reject' style='color: darkslategray;font-family: aakar;font-size: 18px'>
                 
                 <input type='hidden' name='mail' value=$row[email]>
                <input type='submit' name='update' value='Reject'>
