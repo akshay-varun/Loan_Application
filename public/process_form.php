@@ -15,7 +15,9 @@ if(isset($_POST['save']))
 	 VALUES ('$first_name','$last_name','$email',$age,'$dob',$income,$amount,'$purpose',$tenure)";
 
     if (mysqli_query($conn, $sql)) {
-        echo "Your record are Succesfully Stored";
+
+        header('location: index.php');
+
     } else {
         echo "Error: " . $sql . "
 " . mysqli_error($conn);
