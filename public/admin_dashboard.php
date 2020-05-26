@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<p> <a href="admin_login.php?logout='1'" style="color: red;" class="logout">LOGOUT</a> </p>
+<p> <a href="index.php?logout='1'" style="color: red;" class="logout">LOGOUT</a> </p>
 <table>
     <tr>
         <th>First Name</th>
@@ -38,7 +38,7 @@
     if (isset($_GET['logout'])) {
         session_destroy();
         unset($_SESSION['username']);
-        header("location: admin_login.php");
+        header("location: index.php");
     }
     $conn = mysqli_connect('localhost', 'dbms', 'hdjdh83748jfjf#@A', 'tutorial');
     // Check connection

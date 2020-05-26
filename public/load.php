@@ -1,70 +1,94 @@
+<?php
+session_start();
+require_once '../inc/db.php';
+
+if (!isset($_SESSION['username'])) {
+    $_SESSION['msg'] = "You must log in first";
+    header('location: login.php');
+}
+if (isset($_GET['logout'])) {
+    session_destroy();
+    unset($_SESSION['username']);
+    header("location: index.php");
+}
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-        Home
-    </title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@700&family=Piedra&display=swap" rel="stylesheet">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div class="header1">
-<h1 style="color:white;
-    position: relative;
-    top:100px;
-    left: 35%;
-font-family: 'Inconsolata', monospace;
-font-size: 60px">LOAN APPLICATION SYTEM</h1>
-</div>
-<br>
-<br>
+<!-- notification message -->
+<?php if (isset($_SESSION['success'])) : ?>
+    <div class="error success" >
+        <h3>
+            <?php
+            echo $_SESSION['success'];
+            unset($_SESSION['success']);
+            ?>
+        </h3>
+    </div>
+<?php endif ?>
 
-<h1 style="color: red;text-align: center;font-family: 'Piedra', cursive;">USER DASHBOARD</h1>
-<br><br>
-<div class="row">
-    <div class="column">
-        <form method="get" action="register.php">
-            <button type="submit" class="button1">User Register</button>
-        </form>
-    </div>
-    <div class="column">
-        <form method="get" action="login.php">
-            <button type="submit" class="button1">User Login</button>
-        </form>
-    </div>
-</div>
-<br>
-<br>
-<br>
-<br>
-<h1 style="color: red;text-align: center;font-family: 'Piedra', cursive;">ADMIN DASHBOARD</h1>
-<div class="row">
-    <div class="column">
-        <form method="get" action="admin.php">
-            <button type="submit" class="button1">Admin Register</button>
-        </form>
-    </div>
-    <div class="column">
-        <form method="get" action="admin_login.php">
-            <button type="submit" class="button1">Admin Login</button>
-        </form>
-    </div>
-</div>
+<!-- logged in user information -->
+<?php  if (isset($_SESSION['username'])) : ?>
+    <p class="header">Welcome <?php echo $_SESSION['username']; ?></p>
+
+
+    <p> <a href="index.php?logout='1'" style="color: red;" class="logout">LOGOUT</a> </p>
+<?php endif ?>
+
+
+<?php
+if (!isset($_SESSION['username'])) {
+    $_SESSION['msg'] = "You must log in first";
+}
+$conn = mysqli_connect('localhost', 'dbms', 'hdjdh83748jfjf#@A', 'tutorial');
+$status=0;
+$user= '';
+$user=$_SESSION['username'];
+$sql = "select first_name from form where email in(select email from users where username='$user');";
+$result=$conn->query($sql);
+if ($result) {
+// output data of each row
+    while ($row = $result->fetch_assoc()) {
+        $status= $row["first_name"] . "";
+    }
+}
+$conn->close();
+if($status) {
+    echo "
+        <br>
+        <br>
+            <h1 style='text-align: center;color: brown ' > You have already filled the form </h1>
+        <br>
+        <br>
+            <h2 style='text-align: center;color: blueviolet'>Check you Application Status</h2>
+           
+           <br>
+           <br>
+            <form action=\"status.php\">
+              <input type=\"submit\" value=\"Check Status\" class='button'>
+            </form>";
+
+}
+else
+{
+    echo "
+              <br>
+              <br> 
+        <h1 style='text-align: center;color: brown '>Kindly Fill the form here </h1>
+         <br>
+          <br>
+          <form action=\"fill-form.php\">
+        <input type=\"submit\" value=\"Fill the Form\" class='button'>
+        </form> 
+        ";
+}
+?>
+
 </body>
 </html>
-
-
-
-
-
-
-<!--<a href="register.php">Register</a>-->
-<!--<br>-->
-<!--<a href="login.php">Login</a>-->
-<!--<br>-->
-<!--<a href="admin.php">Admin register</a>-->
-<!--<br>-->
-<!--<a href="admin_login.php">Admin Login</a>-->
-<!--<br>-->
-<!--<button <a href="index.php"></a> Hey </button>-->
-

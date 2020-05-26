@@ -16,7 +16,7 @@ if(isset($_POST['save']))
 
     if (mysqli_query($conn, $sql)) {
 
-        header('location: index.php');
+        header('location: load.php');
 
     } else {
         echo "Error: " . $sql . "
