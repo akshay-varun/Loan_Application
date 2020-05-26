@@ -7,18 +7,18 @@
 </head>
 <body>
 <div class="header">
-    <h2>Admin Register</h2>
+    <h2>Register</h2>
 </div>
 
-<form method="post" action="admin_reg_proc.php">
+<form method="post" action="admin.php">
     <?php include('errors.php'); ?>
     <div class="input-group">
         <label>Username</label>
-        <input type="text" name="username" value="">
+        <input type="text" name="username" value="<?php echo $username; ?>">
     </div>
     <div class="input-group">
         <label>Email</label>
-        <input type="email" name="email" value="">
+        <input type="email" name="email" value="<?php echo $email; ?>">
     </div>
     <div class="input-group">
         <label>Password</label>
@@ -32,7 +32,7 @@
         <button type="submit" class="btn" name="reg_user">Register</button>
     </div>
     <p>
-        Already a member? <a href="admin_login.php">Sign in</a>
+        Already a member? <a href="login.php">Sign in</a>
     </p>
 </form>
 </body>

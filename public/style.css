@@ -17,6 +17,7 @@ body {
     border-bottom: none;
     border-radius: 10px 10px 0px 0px;
     padding: 20px;
+    font-size: 40px;
 }
 form, .content {
     width: 30%;
@@ -73,4 +74,67 @@ form, .content {
     left: 450px;
     background: #B0C4DE;
 
+}
+.button{
+    background: coral;
+    padding: 40px;
+    font-size: 30px;
+    border: black;
+    text-align: center;
+    width: 100%;
+    color: #70050a;
+    font-family: "Lucida Console", Courier, monospace;
+    font-weight: bold;
+}
+.logout{
+    background: mistyrose;
+    padding: 30px;
+    color: antiquewhite;
+    font-weight: bold;
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    font-size: 20px;
+}
+.button1 {
+    display: inline-block;
+    padding: 80px 27px;
+    cursor: pointer;
+    color: white;
+    width: 100%;
+    height:100%;
+    background-color: purple;
+    border: none;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    border-radius: 8px;
+    box-shadow: 0 10px #998;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.button1:active {
+    background-color: #8842d5;
+    box-shadow: 0 6px #667;
+    transform: translateY(5px);
+}
+.header1 {
+    overflow: hidden;
+    background-color: black;
+    padding: 20px 10px;
+    height:350px;
+}
+.btn1{
+   position: relative;
+    right: 400px;
+}
+.column {
+    float: left;
+    width: 50%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
