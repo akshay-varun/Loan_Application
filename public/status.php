@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>Status</title>
+    <link href="https://fonts.googleapis.com/css2?family=Piedra&display=swap" rel="stylesheet">
     <style type="text/css">
         table {
             position: absolute;
@@ -12,12 +13,14 @@
             font-size: 80px;
             background: #666;
             color: #FFF;
-            padding: 2px 6px;
             border-collapse: separate;
             border: 1px solid #000;
+            text-align: center;
         }
 
         td {
+            padding-left: 20px;
+            padding-right: 60px;
             text-align: center;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 60px;
@@ -30,17 +33,20 @@
             background: green;
             text-align: center;
             color: black;
-            padding-bottom: 40px
+            padding-bottom: 40px;
+            padding-top: 40px;
         }
         .decline{
         background: red;
         padding-bottom: 40px;
+            padding-top: 40px;
         text-align: center;
         }
         .review{
             background: aquamarine;
         text-align: center;
-        padding-bottom: 40px
+        padding-bottom: 40px;
+            padding-top: 40px;
         }
     </style>
 </head>
@@ -65,7 +71,7 @@ if ($result->num_rows > 0) {
 $conn->close();
 if ($status == 1) {
     echo "
-           <h1 class='approve'>Your Loan Apllication is Approved</h1>
+           <h1 class='approve' style='font-family: 'Piedra', cursive;'>Your Loan Apllication is Approved</h1>
     ";
 } elseif ($status == 2) {
     echo "

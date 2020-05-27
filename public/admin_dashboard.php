@@ -48,31 +48,37 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT first_name,last_name,email,age,dob,income,amount,purpose,tenure from form ";
+    $sql = "SELECT first_name,last_name,email,age,dob,income,amount,purpose,tenure,status from form ";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
 // output data of each row
-        while($row = $result->fetch_assoc()) {
-            $mail=$row["email"];
-            echo "<td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["email"] . "</td><td>" . $row["age"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["income"] . "</td><td>" . $row["amount"] . "</td><td>" . $row["purpose"] .
-                "</td><td>" . $row["tenure"] . "</td><td>" .
+        while ($row = $result->fetch_assoc()) {
 
-                "<form action=\"accept.php\" method='post' class='accept'>
+                $mail = $row["email"];
+                if($row["status"]==0) {
+                    echo "<td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["email"] . "</td><td>" . $row["age"] . "</td><td>" . $row["dob"] . "</td><td>" . $row["income"] . "</td><td>" . $row["amount"] . "</td><td>" . $row["purpose"] .
+                        "</td><td>" . $row["tenure"] . "</td><td>" .
+
+                        "<form action=\"accept.php\" method='post' class='accept'>
                  <input type='hidden' name='mail' value=$row[email]>
                 
                  <input type=\"submit\" name='update' value=\"Accept\" style='color: darkslategray;' />
             </form>" . "<td>" .
-           "<form  action='reject.php' method='post' class='reject' style='color: darkslategray;font-family: aakar;font-size: 18px'>
+                        "<form  action='reject.php' method='post' class='reject' style='color: darkslategray;font-family: aakar;font-size: 18px'>
                 
                 <input type='hidden' name='mail' value=$row[email]>
                <input type='submit' name='update' value='Reject'>
-        </form>" ."<tr>";
+        </form>" . "<tr>";
+                }
+            }
+
+            echo "</table>";
+
         }
-
-        echo "</table>";
-    } else { echo "0 results"; }
-    $conn->close();
-
+    else {
+            echo "0 results";
+        }
+        $conn->close();
 
     ?>
 </table>
